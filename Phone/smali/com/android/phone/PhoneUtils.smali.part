@@ -1,0 +1,175 @@
+.method public static getDiskAvailableSize()J
+    .locals 12
+
+    .prologue
+    const-wide/16 v8, -0x1
+
+    .line 3543
+    invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
+
+    move-result-object v10
+
+    const-string v11, "storage"
+
+    invoke-virtual {v10, v11}, Landroid/content/ContextWrapper;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Landroid/os/storage/StorageManager;
+
+    .line 3544
+    .local v7, storageManager:Landroid/os/storage/StorageManager;
+    if-nez v7, :cond_0
+
+    .line 3545
+    const-string v10, "-----story manager is null----"
+
+    invoke-static {v10}, Lcom/android/phone/PhoneUtils;->log(Ljava/lang/String;)V
+
+    .line 3564
+    :goto_0
+    return-wide v8
+
+    .line 3548
+    :cond_0
+    new-instance v5, Ljava/io/File;
+
+    const-string v10, "sdcard"
+
+    invoke-direct {v5, v10}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    .line 3551
+    .local v5, sdCardDirectory:Ljava/io/File;
+    :try_start_0
+    invoke-virtual {v5}, Ljava/io/File;->exists()Z
+
+    move-result v10
+
+    if-eqz v10, :cond_1
+
+    invoke-virtual {v5}, Ljava/io/File;->isDirectory()Z
+
+    move-result v10
+
+    if-eqz v10, :cond_1
+
+    .line 3552
+    new-instance v6, Landroid/os/StatFs;
+
+    invoke-virtual {v5}, Ljava/io/File;->getPath()Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-direct {v6, v10}, Landroid/os/StatFs;-><init>(Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 3561
+    .local v6, statfs:Landroid/os/StatFs;
+    invoke-virtual {v6}, Landroid/os/StatFs;->getBlockSize()I
+
+    move-result v10
+
+    int-to-long v2, v10
+
+    .line 3562
+    .local v2, blockSize:J
+    invoke-virtual {v6}, Landroid/os/StatFs;->getAvailableBlocks()I
+
+    move-result v10
+
+    int-to-long v0, v10
+
+    .line 3563
+    .local v0, availBlocks:J
+    mul-long v8, v2, v0
+
+    .line 3564
+    .local v8, totalSize:J
+    goto :goto_0
+
+    .line 3554
+    .end local v0           #availBlocks:J
+    .end local v2           #blockSize:J
+    .end local v6           #statfs:Landroid/os/StatFs;
+    .end local v8           #totalSize:J
+    :cond_1
+    :try_start_1
+    const-string v10, "-----diskSpaceAvailable: sdCardDirectory is null----"
+
+    invoke-static {v10}, Lcom/android/phone/PhoneUtils;->log(Ljava/lang/String;)V
+    :try_end_1
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_0
+
+    goto :goto_0
+
+    .line 3557
+    :catch_0
+    move-exception v4
+
+    .line 3558
+    .local v4, e:Ljava/lang/IllegalArgumentException;
+    const-string v10, "-----diskSpaceAvailable: IllegalArgumentException----"
+
+    invoke-static {v10}, Lcom/android/phone/PhoneUtils;->log(Ljava/lang/String;)V
+
+    goto :goto_0
+.end method
+
+.method public static isExternalStorageMounted()Z
+    .locals 5
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 3573
+    invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
+
+    move-result-object v3
+
+    const-string v4, "storage"
+
+    invoke-virtual {v3, v4}, Landroid/content/ContextWrapper;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/os/storage/StorageManager;
+
+    .line 3574
+    .local v0, storageManager:Landroid/os/storage/StorageManager;
+    if-nez v0, :cond_1
+
+    .line 3575
+    const-string v3, "-----story manager is null----"
+
+    invoke-static {v3}, Lcom/android/phone/PhoneUtils;->log(Ljava/lang/String;)V
+
+    .line 3579
+    :cond_0
+    :goto_0
+    return v2
+
+    .line 3578
+    :cond_1
+    const-string v3, "sdcard"
+
+    invoke-virtual {v0, v3}, Landroid/os/storage/StorageManager;->getVolumeState(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 3579
+    .local v1, storageState:Ljava/lang/String;
+    const-string v3, "mounted"
+
+    invoke-virtual {v1, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_0
+
+    const/4 v2, 0x1
+
+    goto :goto_0
+.end method
+
+
