@@ -20,7 +20,7 @@ elif [ "$apkBaseName" = "Settings" ];then
 	sed -i -e "/setOfficialVerifyPreference/d" $tempSmaliDir/smali/com/android/settings/DeviceInfoSettings.smali	
 
 	echo ">>> add origin settings"
-    	sed -i '/com.android.settings.ManageApplicationsSettings/r Settings/settings_headers.xml.part' $tempSmaliDir/res/xml/settings_headers.xml
+    	sed -i '/com.baidu.key.KeySettings/r Settings/settings_headers.xml.part' $tempSmaliDir/res/xml/settings_headers.xml
 
 #    	echo ">>> in custom_app for $apkBaseName to disadble user"
 #	sed -i 's#android:icon="@drawable/ic_settings_multiuser" android:id="@id/user_settings" android:title="@string/user_settings_title" android:fragment="com.android.settings.users.UserSettings#g' $tempSmaliDir/res/xml/settings_headers.xml
