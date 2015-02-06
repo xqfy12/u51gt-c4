@@ -160,7 +160,7 @@
     invoke-super {p0, p1}, Landroid/preference/TwoStatePreference;->onBindView(Landroid/view/View;)V
 
     .line 111
-    const v2, 0x210001e
+    const v2, #android:id@switchWidget#t
 
     invoke-virtual {p1, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -179,7 +179,7 @@
     .line 113
     check-cast v2, Landroid/widget/Checkable;
 
-    iget-boolean v3, p0, Landroid/preference/SwitchPreference;->mChecked:Z
+    iget-boolean v3, p0, Landroid/preference/TwoStatePreference;->mChecked:Z
 
     invoke-interface {v2, v3}, Landroid/widget/Checkable;->setChecked(Z)V
 
@@ -198,16 +198,21 @@
 
     .line 119
     .local v1, switchView:Landroid/widget/Switch;
+    iget-object v2, p0, Landroid/preference/SwitchPreference;->mSwitchOn:Ljava/lang/CharSequence;
+
+    invoke-virtual {v1, v2}, Landroid/widget/Switch;->setTextOn(Ljava/lang/CharSequence;)V
+
+#    .line 120
+#    const/4 v2, 0x0
+
+#    invoke-virtual {v1, v2}, Landroid/widget/Switch;->setFocusable(Z)V
+
+    .line 114
     iget-object v2, p0, Landroid/preference/SwitchPreference;->mListener:Landroid/preference/SwitchPreference$Listener;
 
     invoke-virtual {v1, v2}, Landroid/widget/Switch;->setOnCheckedChangeListener(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V
-
-    .line 120
-    const/4 v2, 0x0
-
-    invoke-virtual {v1, v2}, Landroid/widget/Switch;->setFocusable(Z)V
-
-    .line 124
+ 
+#    .line 124
     .end local v1           #switchView:Landroid/widget/Switch;
     :cond_0
     invoke-virtual {p0, p1}, Landroid/preference/SwitchPreference;->syncSummaryView(Landroid/view/View;)V
@@ -216,23 +221,23 @@
     return-void
 .end method
 
-.method protected onCreateView(Landroid/view/ViewGroup;)Landroid/view/View;
-    .locals 1
-    .parameter "parent"
+#.method protected onCreateView(Landroid/view/ViewGroup;)Landroid/view/View;
+#    .locals 1
+#    .parameter "parent"
 
-    .prologue
-    .line 103
-    const v0, 0x207000a
+#    .prologue
+#    .line 103
+#    const v0, 0x207000a
 
-    invoke-virtual {p0, v0}, Landroid/preference/SwitchPreference;->setWidgetLayoutResource(I)V
+#    invoke-virtual {p0, v0}, Landroid/preference/SwitchPreference;->setWidgetLayoutResource(I)V
 
-    .line 104
-    invoke-super {p0, p1}, Landroid/preference/TwoStatePreference;->onCreateView(Landroid/view/ViewGroup;)Landroid/view/View;
+#    .line 104
+#    invoke-super {p0, p1}, Landroid/preference/TwoStatePreference;->onCreateView(Landroid/view/ViewGroup;)Landroid/view/View;
 
-    move-result-object v0
+#    move-result-object v0
 
-    return-object v0
-.end method
+#    return-object v0
+#.end method
 
 .method public setSwitchTextOff(I)V
     .locals 1
