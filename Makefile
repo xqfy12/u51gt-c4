@@ -105,8 +105,7 @@ baidu_remove_apps := BaiduMap BaiduUpdate GameCenter iReader BaiduAppSearch Baid
 # The command idtoname how to use: first use "apktool d source/system/framework/framework-res.apk other/TMP/framework-res",
 # and then use "idtoname other/TMP/framework-res/res/values/public_master.xml XXXX/smali"(XXXX is the directory where you decode baidu system apk).
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Phone Settings
-# SystemUI 
+baidu_modify_apps := Phone Settings SystemUI 
 
 ##############################################################################
 # The value decides which jar you want to modify, when the jar is based on the baidu framework jar.
@@ -147,8 +146,8 @@ override_property += \
 override_property += \
     ro.baidu.romer=mengxi \
     romzj.rom.id=8712de25-7019-33de-c7e3-807a6240d71c \
-    romzj.rom.version=test_ROM65 \
-    romzj.rom.version.code=65
+    romzj.rom.version=test_ROM66 \
+    romzj.rom.version.code=66
 
 ##############################################################################
 # The value decides which property you will remove from the build.prop.
