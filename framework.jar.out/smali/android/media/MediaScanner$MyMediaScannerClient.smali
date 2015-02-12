@@ -1288,7 +1288,7 @@
 
     move-result-object v42
 
-    invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+    #invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
     .line 1057
     const-string v41, "focus_value_low"
@@ -1297,7 +1297,7 @@
 
     move-result-object v42
 
-    invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+    #invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
     .line 1058
     const-string v41, "group_id"
@@ -1306,7 +1306,7 @@
 
     move-result-object v42
 
-    invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+    #invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
     .line 1059
     const-string v41, "group_index"
@@ -1315,7 +1315,7 @@
 
     move-result-object v42
 
-    invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
+    #invoke-virtual/range {v40 .. v42}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 1062
     .end local v12           #focusHigh:J
@@ -4384,6 +4384,16 @@
 
     .line 632
     .local v15, isvideo:Z
+    move-object/from16 v0, p0
+
+    iget v3, v0, Landroid/media/MediaScanner$MyMediaScannerClient;->mFileType:I
+
+    invoke-static {v3}, Landroid/media/MediaFile;->isImageFileType(I)Z
+
+    move-result v14
+
+#    .line 638
+    .local v14, isimage:Z
     if-nez v13, :cond_5
 
     if-eqz v15, :cond_6
@@ -4405,16 +4415,6 @@
 
     .line 636
     :cond_6
-    move-object/from16 v0, p0
-
-    iget v3, v0, Landroid/media/MediaScanner$MyMediaScannerClient;->mFileType:I
-
-    invoke-static {v3}, Landroid/media/MediaFile;->isImageFileType(I)Z
-
-    move-result v14
-
-    .line 638
-    .local v14, isimage:Z
     if-eqz v14, :cond_7
 
     .line 640
