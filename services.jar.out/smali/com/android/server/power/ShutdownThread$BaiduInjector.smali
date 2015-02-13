@@ -30,11 +30,11 @@
     .parameter "context"
 
     .prologue
-    const v9, 0x1040013
+    const v9, #android:string@yes#t
 
-    const v8, 0x1040009
+    const v8, #android:string@no#t
 
-    const v6, 0x103030f
+    const v6, #android:style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-static {}, Lcom/android/server/power/ShutdownThread;->access$sget-mReboot-7ffdb3()Z
 
@@ -142,18 +142,18 @@
 
     if-ne v2, v4, :cond_2
 
-    const v3, 0x10400df
+    const v3, #android:string@shutdown_confirm_question#t
 
     goto :goto_0
 
     :cond_2
-    const v3, 0x10400de
+    const v3, #android:string@shutdown_confirm#t
 
     goto :goto_0
 
     .restart local v3       #resourceId:I
     :cond_3
-    const v4, 0x10400d9
+    const v4, #android:string@power_off#t
 
     goto :goto_1
 
